@@ -2,7 +2,6 @@ package utils
 
 import (
 	"fmt"
-	"hotel-management/models"
 	"log"
 	"os"
 
@@ -35,18 +34,20 @@ func ConnectDatabase() {
 	// Migrate models
 	DB = db
 	err = DB.AutoMigrate(
-		//&models.Room{},
-		//&models.RoomKey{},
-		//&models.RoomHousekeeping{},
-		&models.Booking{},
-		&models.Employee{},
-		&models.Service{},
-		&models.Notification{},
-		&models.Payment{},
-		&models.Customer{},
-		&models.Hotel{},
-		&models.Facility{},
-		&models.Review{},
+	//&models.Room{},
+	//&models.RoomKey{},
+	//&models.RoomHousekeeping{},
+	//&models.RoomBooking{},
+	//&models.Person{},
+	//&models.Service{},
+	//&models.Notification{},
+	//&models.Payment{},
+	//&models.Hotel{},
+	//&models.HotelLocation{},
+	//&models.Facility{},
+	//&models.Review{},
+	//&models.Account{},
+	//&models.Amenity{},
 	)
 	if err != nil {
 		log.Fatalf("Failed to auto migrate models: %v", err)
