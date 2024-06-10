@@ -16,7 +16,7 @@ var DB *gorm.DB
 func ConnectDatabase() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Error loading .env file")
+		log.Fatalf("Error loading .env file: %v", err)
 	}
 
 	dbHost := os.Getenv("DB_HOST")
@@ -31,18 +31,26 @@ func ConnectDatabase() {
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
-	//migrate models
+
+	// Migrate models
 	DB = db
 	err = DB.AutoMigrate(
-		&models.Room{},
-		&models.RoomKey{},
-		&models.RoomHousekeeping{},
-		//&models.Booking{},
-		//&models.Employee{},
-		//&models.Service{},
-		//&models.Notification{},
-		//&models.Payment{},
+		//&models.Room{},
+		//&models.RoomKey{},
+		//&models.RoomHousekeeping{},
+		&models.Booking{},
+		&models.Employee{},
+		&models.Service{},
+		&models.Notification{},
+		&models.Payment{},
+		&models.Customer{},
+		&models.Hotel{},
+		&models.Facility{},
+		&models.Review{},
 	)
+	if err != nil {
+		log.Fatalf("Failed to auto migrate models: %v", err)
+	}
 
 	fmt.Println("Database connected!")
 }
